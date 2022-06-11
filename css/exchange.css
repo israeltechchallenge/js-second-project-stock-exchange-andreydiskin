@@ -1,0 +1,98 @@
+/* Google font connecting */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+/* In the beginning of each page */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-content {
+  justify-content: center;
+}
+
+.form-control {
+  width: 1000px;
+}
+
+/* no opacity for search bar */
+.bg-light {
+  --bs-bg-opacity: 0;
+}
+
+.btn {
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.results-list ul {
+  padding-left: 22vw;
+}
+
+.results-list ul li {
+  height: 66px;
+  padding-top: 24px;
+
+  list-style-type: none;
+}
+
+.results-list ul li a {
+  font-family: "Open Sans";
+
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+/* divider for each li */
+.li-divider {
+  width: 56vw;
+  border: 1px solid #ebeff2;
+}
+
+/* no divider on the top of the first */
+.results-list ul div:first-child {
+  border: 0;
+}
+
+/* no dots */
+.link {
+  text-decoration: none;
+}
+
+.spinner-border {
+  font-size: large;
+  margin-left: 48vw;
+  margin-top: 27vh;
+}
+
+/* responsiveness */
+@media only screen and (max-width: 1200px) {
+  .form-control {
+    width: 700px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .form-control {
+    width: 400px;
+  }
+  .results-list ul li a {
+    font-size: 13px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .form-control {
+    width: 200px;
+  }
+  .results-list ul li a {
+    font-size: 10px;
+  }
+  .nasdaq-header {
+    font-size: 7vw;
+  }
+}
