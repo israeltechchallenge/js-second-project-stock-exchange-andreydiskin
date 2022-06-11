@@ -71,6 +71,46 @@
   margin-top: 27vh;
 }
 
+.green {
+  font-family: "Open Sans";
+  color: rgb(72, 218, 72);
+  font-weight: bold;
+}
+
+.red {
+  font-family: "Open Sans";
+  color: rgb(255, 22, 22);
+  font-weight: bold;
+}
+
+.comp-symbol {
+  font-family: "Open Sans";
+  color: rgb(150, 150, 150);
+  font-weight: bold;
+}
+
+.img-size {
+  height: 100%;
+  margin-right: 18px;
+}
+
+.company-link {
+  align-items: center;
+  padding: 0.5%;
+}
+
+.nasdaq-con {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.nasdaq-header {
+  font-family: "Open Sans";
+  font-weight: 400;
+  font-size: 50px;
+  color: #373a3c;
+}
+
 /* responsiveness */
 @media only screen and (max-width: 1200px) {
   .form-control {
