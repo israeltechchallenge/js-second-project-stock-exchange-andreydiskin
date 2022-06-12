@@ -2,9 +2,23 @@
 const btn = document.querySelector(".btn");
 const formControl = document.querySelector(".form-control");
 const resultList = document.querySelector(".results-list");
+const marqueeCon = document.querySelector(".marquee-con");
 let input;
 
 /* functions */
+/* a function for displaying the data of the marquee */
+async function marqueeResults(fetchApi, fillDataListMarquee, appendMarquee) {
+  let dataListMarquee = [];
+  let dataMarquee = [];
+
+  dataMarquee = await fetchApi(fetchMarqueeURL);
+
+  /* filling the data */
+  fillDataListMarquee(dataMarquee, dataListMarquee);
+  /* appending to the DOM */
+  appendMarquee(dataListMarquee);
+}
+
 /* a function for displaying 10 results */
 async function showTenResults(input, fetchApi, fillDataList, appendTenResults) {
   let companyFetchURL;
@@ -47,3 +61,6 @@ formControl.addEventListener("change", enterInput);
 btn.addEventListener("click", () =>
   showTenResults(input, fetchApi, fillDataList, appendTenResults)
 );
+
+/* function calling */
+marqueeResults(fetchApi, fillDataListMarquee, appendMarquee);

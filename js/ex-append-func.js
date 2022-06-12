@@ -1,3 +1,26 @@
+/* appending marquee to the DOM */
+function appendMarquee(dataListMarquee) {
+  const marqueeSpan = document.createElement("span");
+  marqueeSpan.classList.add("marquee-span");
+
+  const fragmentMarquee = new DocumentFragment();
+
+  /* DATA_SUBSET_LENGTH - presenting a subset of the items so the browser will not stuck */
+  for (let i = 0; i < DATA_SUBSET_LENGTH; i++) {
+    const newSpanSymbol = document.createElement("span");
+    const newSpanPrice = document.createElement("span");
+
+    newSpanSymbol.innerText = `   ${dataListMarquee[i].symbol} `;
+    newSpanSymbol.classList.add("symbol");
+    newSpanPrice.innerText = `$${dataListMarquee[i].price}   ` + "\u00A0\u00A0";
+    newSpanPrice.classList.add("price");
+
+    fragmentMarquee.append(newSpanSymbol, newSpanPrice);
+  }
+  marqueeSpan.append(fragmentMarquee);
+  marqueeCon.append(marqueeSpan);
+}
+
 /* appending 10 results to the DOM */
 function appendTenResults(dataList) {
   const fragment = new DocumentFragment();

@@ -111,6 +111,41 @@
   color: #373a3c;
 }
 
+/* marquee */
+.marquee-con {
+  height: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.marquee-span {
+  position: absolute;
+  line-height: 50px;
+  animation: marquee 2000s linear infinite;
+  animation-delay: 0.1s;
+  margin-left: 100vw;
+}
+
+.symbol {
+  color: black;
+}
+
+.price {
+  color: rgb(72, 218, 72);
+}
+
+/* marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-80%);
+  }
+}
+
 /* responsiveness */
 @media only screen and (max-width: 1200px) {
   .form-control {
