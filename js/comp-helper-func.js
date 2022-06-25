@@ -2,7 +2,7 @@
 function filterData(data) {
   let filteredData = data.historical.filter((item) => {
     const currentDate = new Date(item.date);
-    const pastLimit = new Date(pastLimitDate);
+    const pastLimit = new Date("01/26/1994");
 
     if (currentDate >= pastLimit) {
       return true;

@@ -4,8 +4,9 @@ function appendCompanyProfile(data) {
   const newLink = document.createElement("a");
   const newSpan = document.createElement("span");
 
-  newImg.classList.add("img-size");
   newLink.classList.add("link");
+  newImg.setAttribute("onerror", "this.onerror=null;this.src=imgDefaultSrc;");
+  newImg.classList.add("img-size");
   newImg.src = data.profile.image;
   newImg.alt = data.profile.name;
   companyImg.appendChild(newImg);
@@ -25,20 +26,12 @@ function appendCompanyProfile(data) {
 
   /* green or red */
   if (data.profile.changesPercentage > 0) {
-    colorToGreen(newSpan, data);
+    newSpan.innerText = "(+" + data.profile.changesPercentage + "%)";
+    newSpan.classList.add("green");
   } else {
-    colorToRed(newSpan, data);
+    newSpan.innerText = "(" + data.profile.changesPercentage + "%)";
+    newSpan.classList.add("red");
   }
 
   companyStockSub.appendChild(newSpan);
-}
-/* setting color functions */
-function colorToGreen(newSpan, data) {
-  newSpan.innerText = "(+" + data.profile.changesPercentage + "%)";
-  newSpan.classList.add("green");
-}
-
-function colorToRed(newSpan, data) {
-  newSpan.innerText = "(" + data.profile.changesPercentage + "%)";
-  newSpan.classList.add("red");
 }

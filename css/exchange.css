@@ -8,6 +8,17 @@
   padding: 0;
 }
 
+html {
+  height: 100%;
+}
+
+/* background image */
+body {
+  background-image: url("../img/background-ex.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
 .flex {
   display: flex;
 }
@@ -28,6 +39,7 @@
 .btn {
   border-radius: 0;
   cursor: pointer;
+  border-radius: 5%;
 }
 
 .results-list ul {
@@ -47,17 +59,25 @@
   font-weight: 400;
   font-size: 24px;
   line-height: 24px;
+  color: rgb(106, 105, 105);
 }
 
 /* divider for each li */
 .li-divider {
   width: 56vw;
-  border: 1px solid #ebeff2;
+  border: 1px solid rgb(255, 255, 255);
 }
 
 /* no divider on the top of the first */
 .results-list ul div:first-child {
   border: 0;
+}
+
+.ten-res-error {
+  font-family: "Open Sans";
+  font-weight: 400;
+  font-size: 20px;
+  color: rgb(255, 22, 22);
 }
 
 /* no dots */
@@ -102,13 +122,14 @@
 .nasdaq-con {
   margin-top: 20px;
   margin-bottom: 20px;
+  background-color: rgb(122, 122, 122);
 }
 
 .nasdaq-header {
   font-family: "Open Sans";
   font-weight: 400;
   font-size: 50px;
-  color: #373a3c;
+  color: rgb(255, 255, 255);
 }
 
 /* marquee */
@@ -165,9 +186,9 @@
     width: 200px;
   }
   .results-list ul li a {
-    font-size: 10px;
+    font-size: 12px;
   }
   .nasdaq-header {
-    font-size: 7vw;
+    font-size: 2em;
   }
 }

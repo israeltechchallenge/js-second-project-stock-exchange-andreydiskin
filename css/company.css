@@ -5,6 +5,17 @@
   padding: 0;
 }
 
+html {
+  height: 100%;
+}
+
+/* background image */
+body {
+  background-image: url("../img/background-comp.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
 .flex {
   display: flex;
 }
@@ -40,7 +51,7 @@
 
 .link {
   text-decoration: none;
-  color: rgb(58, 84, 255);
+  color: rgb(106, 105, 105);
 }
 
 .img-size {
@@ -65,14 +76,27 @@
   margin-top: 40px;
 }
 
+.loader-chart-error {
+  font-family: "Open Sans";
+  font-weight: 400;
+  font-size: 20px;
+  color: rgb(255, 22, 22);
+  text-align: center;
+}
+
 /* responsiveness */
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 900px) {
+}
 @media only screen and (max-width: 600px) {
+  /* chart size */
   .chart-con {
     width: 100vw;
     margin: 0;
   }
   .company-name {
-    font-size: 6vw;
+    font-size: 1.5em;
     text-align: center;
   }
   .company-main-info {
