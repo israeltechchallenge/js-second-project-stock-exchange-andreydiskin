@@ -4,15 +4,56 @@ class SearchResult {
   constructor(resultElement) {
     this.resultList = resultElement;
   }
+
+  highlightText(company, searchValue, searchKey, elementToAppend) {
+    let highLightArea = [0, 0];
+
+    const highLightSpanLink = document.createElement("span");
+    const regSpanLink = document.createElement("span");
+    highLightSpanLink.classList.add("highlight");
+    /* search value to upper char and slicing */
+    highLightSpanLink.className = "highlight";
+    searchValue = searchValue.charAt(0).toUpperCase() + searchValue.slice(1);
+    /* if equals symbol */
+    highLightArea[0] =
+      searchKey === "symbol"
+        ? company[searchKey].indexOf(searchValue[0].toUpperCase())
+        : company[searchKey].indexOf(searchValue);
+    /* if exists */
+    if (highLightArea[0] !== -1) {
+      highLightArea[1] = highLightArea[0] + searchValue.length;
+      /* creating sub string */
+      highLightSpanLink.innerText = company[searchKey].substring(
+        highLightArea[0],
+        highLightArea[1]
+      );
+      /* returning new string with replacement "" */
+      regSpanLink.innerText = company[searchKey].replace(
+        highLightSpanLink.innerText,
+        ""
+      );
+      if (searchKey === "symbol") {
+        regSpanLink.innerText += ")";
+        highLightSpanLink.innerText = "(" + highLightSpanLink.innerText;
+      }
+      elementToAppend.append(highLightSpanLink, regSpanLink);
+    } else {
+      regSpanLink.innerText = company[searchKey];
+      if (searchKey === "symbol") {
+        regSpanLink.innerText = "(" + regSpanLink.innerText + ")";
+      }
+      elementToAppend.append(regSpanLink);
+    }
+  }
+
   /* rendering the results */
-  renderResults({ companies }) {
+  renderResults({ companies, searchValue }) {
     const fragment = new DocumentFragment();
     const newUl = document.createElement("ul");
     if (companies.length === 0) {
       this.resultList.innerHTML = "";
       const noResults = document.createElement("li");
       noResults.classList.add("ten-res-error");
-      /* error checking */
       noResults.innerText = noResErrorMsg;
       newUl.append(noResults);
     } else {
@@ -34,10 +75,12 @@ class SearchResult {
         newImg.alt = companies[i].name;
         newImg.classList.add("img-size");
         newLink.classList.add("link");
-        newLink.href = `company.html?symbol=${companies[i].symbol}`;
+        newLink.href = compSearchURL + `${companies[i].symbol}`;
         newLink.target = "_blank";
-        newLink.innerText = `${companies[i].name}`;
-        newSpanSymbol.innerText = `\u00A0\u00A0\u00A0(${companies[i].symbol})\u00A0`;
+        /* calling highlightText method */
+        this.highlightText(companies[i], searchValue, "symbol", newSpanSymbol);
+        this.highlightText(companies[i], searchValue, "name", newLink);
+
         newSpanSymbol.classList.add("comp-symbol");
 
         /* green or red */

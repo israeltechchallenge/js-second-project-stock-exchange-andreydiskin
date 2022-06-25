@@ -74,9 +74,8 @@ class SearchForm {
 
   async sendCallback(input, callback) {
     await this.showTenResults(input.value);
-    /* the argument for renderResults is inside an object because in Milestone 7 we will need
-  the search value as well in the object */
-    callback({ companies: this.companies });
+    /* object for the companies and the input value */
+    callback({ companies: this.companies, searchValue: input.value });
   }
   /* while clicking sending the callback - with the inputElement and the callback (companies) */
   onSearch(callback) {
