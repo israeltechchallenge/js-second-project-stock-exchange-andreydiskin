@@ -73,6 +73,22 @@ class SearchForm {
     }
   }
 
+  /* found this solution by StackOverFlow and copied some terms */
+  insertUrlParam(key, value) {
+    if (history.pushState) {
+      let searchParams = new URLSearchParams(window.location.search);
+      searchParams.set(key, value);
+      let newURL =
+        window.location.protocol +
+        "//" +
+        window.location.host +
+        window.location.pathname +
+        "?" +
+        searchParams.toString();
+      window.history.pushState({ path: newURL }, "", newURL);
+    }
+  }
+
   enterInput(callback, input) {
     if (input.value === "") {
       clearTimeout(this.timer);
@@ -82,8 +98,18 @@ class SearchForm {
     const timing = 1000;
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
+      this.insertUrlParam("query", input.value);
       this.sendCallback(input.value, callback);
     }, timing);
+  }
+
+  async checkQuerySearch(callback) {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const querySearch = urlSearchParams.get("query");
+    if (querySearch !== null) {
+      this.inputElement.value = querySearch;
+      this.sendCallback(querySearch, callback);
+    }
   }
 
   async sendCallback(input, callback) {
@@ -93,6 +119,7 @@ class SearchForm {
   }
   /* while clicking sending the callback - with the inputElement and the callback (companies) */
   onSearch(callback) {
+    this.checkQuerySearch(callback);
     this.inputElement.addEventListener("keyup", () =>
       this.enterInput(callback, this.inputElement)
     );
