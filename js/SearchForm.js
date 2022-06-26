@@ -10,6 +10,7 @@ class SearchForm {
     this.loaderElement = document.querySelector(".results-list");
     /* loading to html */
     this.loadHtml();
+    this.timer;
   }
   loadHtml() {
     const nav = document.createElement("nav");
@@ -72,13 +73,29 @@ class SearchForm {
     }
   }
 
+  enterInput(callback, input) {
+    if (input.value === "") {
+      clearTimeout(this.timer);
+      return;
+    }
+
+    const timing = 1000;
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      this.sendCallback(input.value, callback);
+    }, timing);
+  }
+
   async sendCallback(input, callback) {
-    await this.showTenResults(input.value);
+    await this.showTenResults(input);
     /* object for the companies and the input value */
-    callback({ companies: this.companies, searchValue: input.value });
+    callback({ companies: this.companies, searchValue: input });
   }
   /* while clicking sending the callback - with the inputElement and the callback (companies) */
   onSearch(callback) {
+    this.inputElement.addEventListener("keyup", () =>
+      this.enterInput(callback, this.inputElement)
+    );
     this.btn.addEventListener("click", () =>
       this.sendCallback(this.inputElement, callback)
     );
